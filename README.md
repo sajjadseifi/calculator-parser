@@ -12,7 +12,7 @@
 
 <h2>IR</h2>
 <ul>
-    <li>PUSH n</li>
+    <li>PUSH n add element with data n on end of stack</li>
     <li>PLUS   replace 2 last element of stack with result of sum</li>
     <li>MIN   replace 2 last element of stack with result of mines</li>
     <li>MULT  replace 2 last element of stack with result of multipy</li>
