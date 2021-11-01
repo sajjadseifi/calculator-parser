@@ -21,7 +21,7 @@ int parse_program(AST_node **icode_p)
     {   
         if(token.class != EOF)
         {
-            printf("garbage after end of program");
+            printf("garbage after end of program\n");
         }
 
         *icode_p = expr;
