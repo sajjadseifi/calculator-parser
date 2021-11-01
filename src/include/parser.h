@@ -12,6 +12,6 @@ typedef struct _expression {
 
 typedef Expression AST_node;
 
-extern void parse_program(AST_node **);
+extern int parse_program(AST_node **);
 
 #endif
