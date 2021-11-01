@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "include/parser.h"
 #include "include/backend.h"
-static void code_gen_operator(Operator *oper)
+static void code_gen_operator(Operator oper)
 {
-    switch (*oper)
+    switch (oper)
     {
         case '+':printf("plus\n"); break;
         case '-':printf("min\n"); break;
@@ -27,13 +27,14 @@ static void code_gen_experssion(Expression *expr)
 }
 static int interpret_experssion(Expression *expr)
 {
+    int left_expr,right_expr;
     switch (expr->type)
     {
     case 'D': 
         return expr->value;
     case 'P': 
-        int left_expr = interpret_experssion(expr->left);
-        int right_expr =interpret_experssion(expr->right);
+        left_expr  = interpret_experssion(expr->left);
+        right_expr = interpret_experssion(expr->right);
         switch (expr->oper)
         {
             case '+': return left_expr + right_expr; 
@@ -41,20 +42,19 @@ static int interpret_experssion(Expression *expr)
             case '*': return left_expr * right_expr; 
             case '/': return left_expr / right_expr; 
         }
-        break;
+        return 0;
     }
-    return 0;
 }
 
 void process(AST_node *icode,int status)
 {
-    if(status == 0)
+    if(status == 1)
     {
-        code_gen_experssion(icode);
-        printf("print\n");
-    }
-    else {
         int res = interpret_experssion(icode);
         printf("result : %d",res);
+    }
+    else {
+        code_gen_experssion(icode);
+        printf("print\n");
     }
 }
